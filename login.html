@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/ico" href="img/download.png" />
+    <title>News Portal</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/magnific-popup.css" />
+    <link rel="stylesheet" type="text/css" href="css/login.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"></script>
+    <script src="js/jquery.magnific-popup.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <nav class="navbar bg-light navbar-expand-sm fixed-top bottom_border">
+        <div class="container">
+          <img src="img/logo.png" style="width: 10%; height: 60px" class="img-fluid" alt="logo" />
+          <a class="navbar-brand pl-5" href="#"> Nijika News </a>
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="entertainment.html">Entertainment</a></li>
+              <li class="nav-item"><a class="nav-link" href="sport.html">Sport</a></li>
+            </ul>
+          </div>
+        </div>
+        <a href="login.html" class="btn btn-outline-secondary btn-sm">LogIn</a>
+      </nav>
+    </header>
+    <!-- demo.......... -->
+    <div class="login-page" style="margin-top: 5rem">
+      <div class="form">
+        <h2>Login Page</h2>
+        <form class="login-form">
+          <input type="text" placeholder="Email" id="emailValidation" />
+          <input type="password" placeholder="Password" id="passwordValidation" />
+          <button onclick="validation()">Login</button>
+        </form>
+        <p class="message" onclick="login()">Not registered? <a href="#">Create an Account</a></p>
+      </div>
+    </div>
+    <script>
+      $(function () {
+        function sendData($form) {
+          let dataString = $(this).serialize();
+
+          return $.ajax({
+            type: $form.attr('method'),
+            url: $form.attr('action'),
+            data: dataString,
+          });
+        }
+
+        $('form').validate();
+
+        $('form').on('submit', function (e) {
+          e.preventDefault();
+
+          sendData($(this)).done(function () {
+            $('#contact_form').html("<div id='message'></div>");
+            $('#message').html('<h2>Contact Form Submitted!</h2>').append('<p>We will be in touch soon.</p>').hide().fadeIn(1500);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
